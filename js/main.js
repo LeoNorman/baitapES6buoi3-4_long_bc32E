@@ -59,11 +59,15 @@ const setLocalStore = () => {
     localStorage.setItem('taskList', JSON.stringify(TaskLists.taskList))
 }
 
+const setLocalStore1 = () => {
+    localStorage.setItem('taskListCompleted', JSON.stringify(TaskLists.taskListCompleted))
+}
+
 // Get value từ local
 const getLocalStore = () => {
     const data = localStorage.getItem('taskList')
     const dataParse = JSON.parse(data) || []
-    console.log(dataParse)
+    // console.log(dataParse)
 
     // sử dụng hàm map => return về 1 mảng mới
     TaskLists.taskList = dataParse.map((value) => {
@@ -76,7 +80,26 @@ const getLocalStore = () => {
 
     renderTaskList()
 }
+
+const getLocalStore1 = () => {
+    const data = localStorage.getItem('taskListCompleted')
+    const dataParse = JSON.parse(data) || []
+    // console.log(dataParse)
+
+    // sử dụng hàm map => return về 1 mảng mới
+    TaskLists.taskListCompleted = dataParse.map((value) => {
+        const task = new Task()
+        for (let key in value) {
+            task[key] = value[key]
+        }
+        return task
+    })
+
+    renderTaskCompleted()
+}
 getLocalStore()
+
+getLocalStore1()
 
 addItem.onclick = () => {
     const task = getFormValues()
@@ -87,24 +110,55 @@ addItem.onclick = () => {
 }
 
 window.removeTask = (name) => {
-    // console.log('long')
     TaskLists.removeTask(name)
     renderTaskList()
     setLocalStore()
 }
 
 window.removeTaskCompleted = (name) => {
-    // console.log('long')
     TaskLists.removeTaskCompleted(name)
     renderTaskCompleted()
-    setLocalStore()
+    setLocalStore1()
 }
 
 window.addTaskCompleted = (name) => {
     TaskLists.addTaskCompleted(name)
+    ,
     renderTaskCompleted()
     TaskLists.removeTask(name)
     renderTaskList()
-    console.log(TaskLists.taskListCompleted)
+    setLocalStore()
+    setLocalStore1()
 }
+
+// window.addTaskListFromCompleted = (name) => {
+//     TaskLists.addTaskListFromCompleted(name)
+//     console.log(TaskLists.taskList);
+//     renderTaskList()
+//     TaskLists.removeTaskCompleted(name)
+//     renderTaskCompleted()
+//     setLocalStore()
+//     setLocalStore1()
+// }
+
+document.querySelector('#two').onclick = () => {
+    TaskLists.sapXepAZ()
+    TaskLists.sapXepCompletedAZ()
+    renderTaskList()
+    renderTaskCompleted()
+    setLocalStore()
+    setLocalStore1()
+}
+
+document.querySelector('#three').onclick = () => {
+    TaskLists.sapXepZA()
+    TaskLists.sapXepCompletedZA()
+    renderTaskList()
+    renderTaskCompleted()
+    setLocalStore()
+    setLocalStore1()
+}
+
+
+
 
