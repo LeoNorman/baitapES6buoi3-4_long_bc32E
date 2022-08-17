@@ -25,11 +25,11 @@ class TaskList {
         this.taskListCompleted = [...this.tasks2, ...this.taskListCompleted]
     }
 
-    // addTaskListFromCompleted(name) {
-    //     this.tasks1 = [...this.taskListCompleted]
-    //     this.tasks3 = this.tasks1.filter((task) => task.name === name)
-    //     this.taskList = [...this.tasks3, ...this.taskList]
-    // }
+    addTaskListFromCompleted(name) {
+        this.tasks1 = [...this.taskListCompleted]
+        this.tasks3 = this.tasks1.filter((task) => task.name === name)
+        this.taskList = [...this.tasks3, ...this.taskList]
+    }
 
     sapXepAZ () {
         this.taskList = this.taskList.sort((taskTiepTheo, task) => {

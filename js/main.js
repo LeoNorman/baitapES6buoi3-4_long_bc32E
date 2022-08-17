@@ -42,7 +42,7 @@ const renderTaskCompleted = () => {
                                 <button class="remove" onclick="removeTaskCompleted('${task.name}')">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
-                                <button class="complete">
+                                <button class="complete" onclick="addTaskListFromCompleted('${task.name}')">
                                     <i class="far fa-check-circle"></i>
                                     <i class="fas fa-check-circle"></i>
                                 </button>
@@ -131,15 +131,15 @@ window.addTaskCompleted = (name) => {
     setLocalStore1()
 }
 
-// window.addTaskListFromCompleted = (name) => {
-//     TaskLists.addTaskListFromCompleted(name)
-//     console.log(TaskLists.taskList);
-//     renderTaskList()
-//     TaskLists.removeTaskCompleted(name)
-//     renderTaskCompleted()
-//     setLocalStore()
-//     setLocalStore1()
-// }
+window.addTaskListFromCompleted = (name) => {
+    TaskLists.addTaskListFromCompleted(name)
+    console.log(TaskLists.taskList);
+    renderTaskList()
+    TaskLists.removeTaskCompleted(name)
+    renderTaskCompleted()
+    setLocalStore()
+    setLocalStore1()
+}
 
 document.querySelector('#two').onclick = () => {
     TaskLists.sapXepAZ()
